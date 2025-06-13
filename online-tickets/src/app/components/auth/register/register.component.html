@@ -1,0 +1,118 @@
+<div class="main-div">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-field">
+      <label>Name</label>
+      <input
+        [ngStyle]="{
+          'border-color':
+            form.get('name')?.invalid && form.get('name')?.touched
+              ? 'red'
+              : 'initial'
+        }"
+        formControlName="name"
+        type="text"
+        name="name"
+        placeholder="Name"
+        required
+      />
+      @if(nameIsInvalid){
+      <p class="control-error">Name is invalid!</p>
+      }
+    </div>
+    <div class="input-field">
+      <label>Username</label>
+      <input
+        [ngStyle]="{
+          'border-color':
+            form.get('username')?.invalid && form.get('username')?.touched
+              ? 'red'
+              : 'initial'
+        }"
+        formControlName="username"
+        type="text"
+        name="username"
+        placeholder="Username"
+        required
+      />
+      @if(usernameIsInvalid){
+      <p class="control-error">Username is invalid!</p>
+      }
+    </div>
+    <div class="input-field">
+      <label>Birth Date</label>
+      <input
+        [ngStyle]="{
+          'border-color':
+            form.get('birthdate')?.invalid && form.get('birthdate')?.touched
+              ? 'red'
+              : 'initial'
+        }"
+        formControlName="birthdate"
+        type="date"
+        name="birthdate"
+        placeholder="Birth Date"
+        required
+      />
+      @if(dateIsInvalid){
+      <p class="control-error">Date is invalid!</p>
+      }
+    </div>
+    <div class="input-field">
+      <label>Password</label>
+      <input
+        [ngStyle]="{
+          'border-color':
+            form.get('password')?.invalid && form.get('password')?.touched
+              ? 'red'
+              : 'initial'
+        }"
+        formControlName="password"
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      @if(passwordIsInvalid){
+      <p class="control-error">Password is invalid!</p>
+      } @if(specialCharCheck){
+      <p class="control-error">Password must have a special character!</p>
+      }
+    </div>
+    <div class="input-field">
+      <label>Confirm Password</label>
+      <input
+        [ngStyle]="{
+          'border-color':
+            form.get('confirmPassword')?.invalid &&
+            form.get('confirmPassword')?.touched
+              ? 'red'
+              : 'initial'
+        }"
+        formControlName="confirmPassword"
+        type="password"
+        name="confirm_password"
+        placeholder="Confirm Password"
+        required
+      />
+      @if(confirmPasswordIsInvalid){
+      <p class="control-error">Confirm Password is invalid!</p>
+      } @if(passwordMismatch){
+      <p class="control-error">Passwords do not match!</p>
+      }
+    </div>
+    <div class="input-field">
+      <label>User Type</label>
+      <select id="select-type" name="userType" formControlName="userType">
+        <option selected value="Customer">Customer</option>
+        <option value="Admin">Admin</option>
+        <option value="EventOrganizer">Event Organizer</option>
+      </select>
+    </div>
+    <button id="submit-button" [disabled]="!form.valid" type="submit">
+      Register
+    </button>
+    @if(registerStatus){
+    <p class="control-success">Registration Succesfull!</p>
+    }
+  </form>
+</div>

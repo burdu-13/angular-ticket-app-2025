@@ -1,0 +1,94 @@
+<div class="event-card">
+  <img [src]="event.imgUrl" alt="{{ event.name }}" class="event-image" />
+  <div class="event-details">
+    <h3>{{ event.name }}</h3>
+    <p class="date">{{ event.date | date : "mediumDate" }}</p>
+    <p class="category">Category: {{ event.category }}</p>
+    <p>{{ event.description }}</p>
+
+    @if (event.ticketTiers.length) {
+    <h4>Ticket Tiers:</h4>
+    <ul id="tiers-list">
+      @for (tier of event.ticketTiers; track tier) {
+      <li>
+        {{ tier.name }}: {{ getFormattedPrice(tier.price) }} ({{
+          tier.ticketsAvailable
+        }}
+        available)
+      </li>
+
+      @if (loggedUserType === 'Customer') { @if ((tier.ticketsAvailable -
+      tier.ticketsSold) > 0) {
+      <button id="buy-btn" [disabled]="event.isSalesSuspended" (click)="buyTicket(tier)">Buy a ticket</button>
+      } @else {
+      <p class="sold-out">Sold Out</p>
+      } } }
+    </ul>
+
+    } @if (event.isSalesSuspended) {
+    <div class="suspended-banner">Sales Suspended</div>
+    } @for(company of companies; track company){ @if(company.companyName ===
+    event.companyName){
+    <button id="edit-btn" (click)="toggleEditEventPage()">Edit Event</button>
+    } }
+  </div>
+
+  @if (isEditEventVisible) {
+  <div class="edit-event-overlay" (click)="toggleEditEventPage()">
+    <div class="edit-event-card-page" (click)="$event.stopPropagation()">
+      <form [formGroup]="editEvent" (ngSubmit)="submitEditEvent()">
+        <h2>Edit Event</h2>
+        <div class="form-content">
+          <div class="input-field">
+            <input
+              type="text"
+              name="name"
+              formControlName="name"
+              placeholder="Event Name"
+            />
+          </div>
+          <div class="input-field">
+            <input type="date" formControlName="date" name="date" />
+          </div>
+          <div class="input-field">
+            <textarea
+              ame="description"
+              formControlName="description"
+              placeholder="Description"
+            ></textarea>
+          </div>
+          <div class="input-field">
+            <input
+              type="text"
+              name="imageurl"
+              formControlName="imageUrl"
+              placeholder="Image URL"
+            />
+          </div>
+        </div>
+        <div class="form-buttons">
+          <div class="remove-btn">
+            <button id="remove-btn" (click)="removeEvent()">
+              Remove Event
+            </button>
+          </div>
+          <div class="remove-btn">
+            <button id="suspend-btn" (click)="toggleSalesSuspension()" [disabled]="!canSuspendSales">Suspend Sales</button>
+          </div>
+          <div class="action-btns">
+            <button type="submit" id="submit-btn">Save Changes</button>
+            <button
+              type="button"
+              id="cancel-btn"
+              (click)="toggleEditEventPage()"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+      <button class="close-edit-btn">&#x2716;</button>
+    </div>
+  </div>
+  }
+</div>

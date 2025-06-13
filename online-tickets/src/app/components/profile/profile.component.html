@@ -1,0 +1,73 @@
+<div class="full-div">
+  <div class="main-wrapper">
+    <h1>Edit Profile</h1>
+    <form [formGroup]="editProfile" (ngSubmit)="updateUserData()">
+      <div class="input-field">
+        <label>Name</label>
+        <input type="text" formControlName="name" required />
+      </div>
+
+      <div class="input-field">
+        <label>Birth Date</label>
+        <input type="date" formControlName="birthdate" required />
+      </div>
+
+      <div class="input-field">
+        <label>Password</label>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          required
+        />
+      </div>
+
+      <div class="show-password-container">
+        <input
+          type="checkbox"
+          id="showPassword"
+          (change)="toggleShowPassword()"
+        />
+        <label for="showPassword">Show Password</label>
+      </div>
+
+      <button id="submit-btn" type="submit">Save Profile</button>
+    </form>
+  </div>
+
+  @if(loggedUserType === 'EventOrganizer'){
+  <div class="main-wrapper">
+    <h1>Register Company</h1>
+    <form [formGroup]="addCompany" (ngSubmit)="registerCompany()">
+      <div class="input-field">
+        <label>Company Name</label>
+        <input type="text" formControlName="companyName" required />
+      </div>
+
+      <div class="input-field">
+        <label>Employee Email</label>
+        <input type="text" formControlName="employeeEmail" required />
+      </div>
+
+      <div class="input-field">
+        <label>Employee Name</label>
+        <input
+          type="text"
+          [value]="loggedUserName"
+          formControlName="employeeName"
+          required
+        />
+      </div>
+
+      <div class="input-field">
+        <label>Password</label>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          required
+        />
+      </div>
+      <button id="submit-btn" type="submit">Save Profile</button>
+    </form>
+  </div>
+  }
+</div>

@@ -1,0 +1,57 @@
+@if (loggedUserType === 'Admin') {
+  <div class="main-wrapper">
+      <div class="main-container">
+          <div class="event-items">
+              @if (loadingEvents) { <p>Loading events...</p> }
+              @else {
+                  @if (events.length > 0) {
+                  <div class="event-grid">
+                      @for (event of paginatedEvents; track event._id) {
+                      <app-event-item [event]="event"></app-event-item>
+                      }
+                  </div>
+                  <div class="pagination">
+                      <button [disabled]="currentPageEvents === 1" (click)="changePageEvents(currentPageEvents - 1)"
+                          class="pagination-btn">
+                          Previous
+                      </button>
+                      <span>Page {{ currentPageEvents }} of {{ totalPagesEvents }}</span>
+                      <button [disabled]="currentPageEvents === totalPagesEvents"
+                          (click)="changePageEvents(currentPageEvents + 1)" class="pagination-btn">
+                          Next
+                      </button>
+                  </div>
+                  } @else { <p>No events found.</p> }
+              }
+          </div>
+      </div>
+  
+      <div class="main-container">
+          <div class="company-items">
+              @if (loadingCompanies) { <p>Loading companies...</p> }
+              @else {
+                  @if (companies.length > 0) {
+                  <div class="company-grid">
+                      @for (company of paginatedCompanies; track company._id) {
+                      <app-company-item [company]="company"></app-company-item>
+                      }
+                  </div>
+                  <div class="pagination">
+                      <button [disabled]="currentPageCompanies === 1"
+                          (click)="changePageCompanies(currentPageCompanies - 1)" class="pagination-btn">
+                          Previous
+                      </button>
+                      <span>Page {{ currentPageCompanies }} of {{ totalPagesCompanies }}</span>
+                      <button [disabled]="currentPageCompanies === totalPagesCompanies"
+                          (click)="changePageCompanies(currentPageCompanies + 1)" class="pagination-btn">
+                          Next
+                      </button>
+                  </div>
+                  } @else { <p>No companies found.</p> }
+              }
+          </div>
+      </div>
+  </div>
+  } @else {
+  <h1>ADMINS ONLY</h1>
+  }

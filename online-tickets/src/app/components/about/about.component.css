@@ -1,0 +1,13 @@
+#about-us{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 2vh;
+    text-align: center;
+}
+
+#about-us p{
+    font-size: 1.2vw;
+}

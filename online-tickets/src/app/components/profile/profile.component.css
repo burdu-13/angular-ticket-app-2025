@@ -1,0 +1,130 @@
+.main-wrapper {
+  width: 30vw;
+  min-width: 350px;
+  height: 70vh;
+  background-color: #0077b6;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  color: #ffffff;
+  font-family: 'Roboto';
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+form input {
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #333333;
+  font-size: 1rem;
+  transition: box-shadow 0.3s, border-color 0.3s;
+  outline: none;
+}
+
+form input:hover,
+form input:focus {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #48cae4;
+}
+
+.show-password-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.show-password-container input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+.show-password-container label {
+  font-size: 1rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    width: 80%;
+    padding: 1.5rem;
+  }
+
+  form input {
+    width: 100%;
+  }
+}
+
+.full-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 96.5vw;
+  height: 100vh;
+  flex-direction: row;
+  gap: 5vw;
+  padding: 1rem;
+}
+#submit-btn {
+  background-color: #128a2e;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  outline: none;
+}
+
+#submit-btn:hover {
+  background-color: #218838;
+  transform: scale(1.03);
+}
+
+#submit-btn:active {
+  background-color: #1e7e34;
+  transform: scale(0.97);
+}
+
+
+
+

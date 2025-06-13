@@ -1,0 +1,275 @@
+body {
+  font-family: "Roboto", serif;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5vw;
+  box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.2);
+  margin-bottom: 2vh;
+  width: 22vw;
+  min-height: 40vh;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: #fff;
+  overflow: hidden;
+  height: 88vh;
+}
+
+.event-image {
+  width: 100%;
+  height: 20vh;
+  object-fit: cover;
+  border-top-left-radius: 0.5vw;
+  border-top-right-radius: 0.5vw;
+  display: block;
+}
+
+.event-details {
+  padding: 1.5vh;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-details h3 {
+  margin-bottom: 0.5vh;
+  font-size: 4vh;
+  color: #333;
+}
+
+.date,
+.category {
+  font-size: 1.3vh;
+  color: #666;
+  margin-bottom: 1vh;
+}
+
+.description {
+  font-size: 1.4vh;
+  margin-bottom: 1.5vh;
+  color: #444;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.ticket-tiers {
+  margin-bottom: 1.5vh;
+}
+
+.ticket-tiers li {
+  font-size: 1.4vh;
+  margin-bottom: 0.5vh;
+}
+
+#suspend-btn {
+  background-color: #f44336;
+  color: white;
+  font-size: 1.6vh;
+  font-weight: bold;
+  padding: 2vh 2vh;
+  border: none;
+  border-radius: 0.5vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0;
+  display: inline-block;
+  text-align: center;
+}
+
+#suspend-btn:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+#suspend-btn:disabled {
+  background-color: #bdbdbd;
+  cursor: default;
+  transform: none;
+}
+
+.suspended-banner {
+  background-color: #ffebee;
+  padding: 0.8vh 1vw;
+  color: #d32f2f;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1vh;
+  font-size: 1.2vh;
+}
+
+#buy-btn {
+  background-color: #0077b6;
+  color: white;
+  font-size: 1.2vh;
+  font-weight: bold;
+  padding: 2vh 3vw;
+  border: none;
+  border-radius: 0.5vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 1vh 0;
+}
+
+#buy-btn:hover:not(:disabled) {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+#buy-btn:disabled {
+  background-color: #b0bec5;
+  color: #ffffff99;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.6;
+}
+
+#edit-btn {
+  background-color: #0077b6;
+  border: none;
+  color: white;
+  width: 100%;
+  height: 6vh;
+  font-size: 3vh;
+  margin-top: auto;
+  cursor: pointer;
+  border-radius: 0.3vw;
+  transition: background-color 0.2s ease;
+  font-family: "Roboto", serif;
+}
+
+#edit-btn:hover {
+  background-color: #005f99;
+}
+
+.edit-event-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.edit-event-card-page {
+  background-color: #ffffff;
+  border-radius: 0.5vw;
+  padding: 2vh;
+  box-shadow: 0 0.8vw 1.5vw rgba(0, 0, 0, 0.1);
+  animation: popupFadeIn 0.5s ease-out;
+  text-align: left;
+  max-width: 95vw;
+  width: 60vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  flex-grow: 1;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  margin-bottom: 2vh;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+}
+
+.close-edit-btn {
+  position: absolute;
+  top: 1vh;
+  right: 1vw;
+  font-size: 2vh;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #333;
+  font-family: "Roboto", serif;
+}
+
+input,
+textarea {
+  height: 3vh;
+  padding: 2vh;
+  border: 0.2vw solid #ffffff;
+  border-radius: 0.5vw;
+  background-color: #f1f1f1;
+  color: #333333;
+  font-size: 2vh;
+  transition: box-shadow 0.3s, border-color 0.3s;
+  outline: none;
+  font-family: "Roboto", serif;
+}
+
+textarea {
+  min-height: 10vh;
+  resize: none;
+}
+
+.form-buttons button {
+  background-color: #128a2e;
+  font-size: 1.8vh;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5vw;
+  padding: 1.5vh 3vw;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  outline: none;
+  color: white;
+  font-family: "Roboto", serif;
+}
+
+.form-buttons button[type="button"] {
+  background-color: #6c757d;
+}
+
+.form-buttons button:hover {
+  background-color: #218838;
+}
+
+.action-btns {
+  display: flex;
+  gap: 2vw;
+}
+
+#remove-btn {
+  background-color: #c0392b;
+}
+
+#cancel-btn:hover {
+  background-color: #dc3545;
+}
+
+form input:hover,
+form input:active,
+textarea:hover,
+textarea:active {
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2);
+  border-color: #48cae4;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+

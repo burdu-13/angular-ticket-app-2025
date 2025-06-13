@@ -1,0 +1,112 @@
+<div class="text-div">
+  <h1 class="offer-text">Explore Our Events:</h1>
+</div>
+
+@if (loggedUserType === 'EventOrganizer') {
+  <div class="add-event-btn-container">
+    <button class="add-event-btn" (click)="toggleAddEventPage()">
+      Add Event
+    </button>
+  </div>
+
+  @if (isAddEventVisible) {
+    <div class="overlay" (click)="toggleAddEventPage()">
+      <div class="add-event-page" (click)="$event.stopPropagation()">
+        <h2 class="add-event-title">Add Event</h2>
+        <form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+          <div class="input-field">
+            <label>Event Name:</label>
+            <input type="text" formControlName="eventName" required />
+          </div>
+
+          <div class="input-field">
+            <label>Event Date:</label>
+            <input type="date" formControlName="eventDate" required />
+          </div>
+
+          <div class="input-field">
+            <label>Category:</label>
+            <select formControlName="eventCategory">
+              <option value="" disabled>Select a category</option>
+              @for (category of categories; track category) {
+                <option value="{{category}}">{{ category }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="input-field">
+            <label>Company:</label>
+            <select formControlName="eventCompany">
+              <option value="" disabled>Select a company</option>
+              @for (company of companies; track company) {
+                <option value="{{company.companyName}}">{{ company.companyName }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="input-field">
+            <label>Description:</label>
+            <textarea formControlName="eventDescription"></textarea>
+          </div>
+
+          <div class="input-field">
+            <label>Event Image URL:</label>
+            <input type="text" formControlName="eventImageUrl" required />
+          </div>
+
+          <div class="input-field">
+            <label>Ticket Tiers:</label>
+            <div formArrayName="ticketTiers">
+              @for (tier of ticketTiersFormArray.controls; let i = $index; track $index) {
+                <ng-container [formGroupName]="i">
+                  <div class="tier-container">
+                    <label for="tierName-{{i}}">Tier Name:</label>
+                    <input type="text" id="tierName-{{i}}" formControlName="name">
+
+                    <label for="tierPrice-{{i}}">Price:</label>
+                    <input type="number" id="tierPrice-{{i}}" formControlName="price">
+
+                    <label for="tierAvailability-{{i}}">Availability:</label>
+                    <input type="number" id="tierAvailability-{{i}}" formControlName="ticketsAvailable">
+
+                    <button type="button" (click)="removeTier(i)">Remove Tier</button>
+                  </div>
+                </ng-container>
+              }
+            </div>
+            <button type="button" id="add-tier-btn" (click)="addTier()">Add Tier</button>
+          </div>
+
+          <button id="submit-btn" type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+  }
+}
+
+<div class="search-flt">
+  <input type="text" placeholder="Search by name" [(ngModel)]="searchName" (input)="applyFilters()">
+  <input type="text" placeholder="Search by category" [(ngModel)]="searchCategory" (input)="applyFilters()">
+  <label for="startDate">Start Date:</label>
+  <input type="date" id="startDate" [(ngModel)]="searchStartDate" (input)="applyFilters()">
+</div>
+
+<div class="events-container">
+  @if (paginatedEvents.length > 0) {
+    <div class="page-container">
+      @for (event of paginatedEvents[currentPage]; track trackEvent) {
+        <app-event-card (eventRemoved)="onEventRemoved($event)"  (eventUpdated)="$event" [event]="event" [companies]="companies"></app-event-card>
+      }
+    </div>
+  } @else {
+    <p>No events found.</p>
+  }
+</div>
+
+<div class="pagination">
+  @if (totalPages > 1) {
+    <button class="pagination-btn" (click)="previousPage()" [disabled]="currentPage === 0">Previous</button>
+    <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+    <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Next</button>
+  }
+</div>

@@ -1,0 +1,75 @@
+.form-div {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-div {
+    background-color: #03045e;
+    width: 50%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    white-space: wrap;
+}
+
+.right-div {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome{
+    font-size: 2.5vw;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 5px;
+    transition: background-color,0.3s;
+    cursor:pointer;
+    padding: 0.5rem;
+}
+
+#text{
+    font-size: 1vw;
+    background-color: white;
+    border-radius: 3px;
+    transition: background-color,0.3s;
+    cursor:pointer;
+    padding: 0.5rem;
+}
+
+#welcome:hover{
+    background-color: black;
+    color: white;
+}
+
+#text:hover{
+    background-color: black;
+    color: white;
+}
+
+a{
+    font-weight: bolder;
+}
+
+@media (max-width: 650px) {
+#text{
+    font-size: 2vw;
+}
+}

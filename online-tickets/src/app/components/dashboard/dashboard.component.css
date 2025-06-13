@@ -1,0 +1,86 @@
+.main-wrapper {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main-container {
+  background-color: #0077b6;
+  width: 45%;
+  height: 100%;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.event-items , .company-items {
+  width: 100%;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  justify-content: space-between;
+  margin-top: 8vh;
+}
+
+.event-grid, .company-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vh;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 20px 0;
+}
+
+.pagination-btn {
+  background-color: white;
+  color: #0077b6;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: "Roboto", serif;
+}
+
+.pagination-btn:disabled {
+  background-color: #bbbbbb;
+  cursor: not-allowed;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #dcdcdc;
+  transform: scale(1.05);
+}
+
+.pagination-btn.active {
+  background-color: #004bcc;
+  color: white;
+  font-weight: bold;
+}
+
+span {
+  font-family: "Roboto", serif;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

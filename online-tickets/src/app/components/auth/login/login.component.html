@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="input-field">
+    <label>Username</label>
+    <input
+      [ngStyle]="{
+        'border-color':
+          form.get('username')?.invalid && form.get('username')?.touched
+            ? 'red'
+            : 'initial'
+      }"
+      formControlName="username"
+      type="text"
+      name="username"
+      placeholder="Username"
+      required
+    />
+  </div>
+  <div class="input-field">
+    <label>Password</label>
+    <input
+      [ngStyle]="{
+        'border-color':
+          form.get('password')?.invalid && form.get('password')?.touched
+            ? 'red'
+            : 'initial'
+      }"
+      formControlName="password"
+      type="password"
+      name="password"
+      placeholder="Password"
+      required
+    />
+  </div>
+  @if(isSubmitted && form.valid){
+  <p class="control-error">{{ errorMessage }}</p>
+  }
+  <button id="submit-button" type="submit">Login</button>
+</form>

@@ -1,0 +1,29 @@
+@if(statusLogIn){
+<div class="text-div">
+  <h1 class="offer-text">What we offer:</h1>
+</div>
+
+<div class="cards-component">
+  <app-card
+    [cardTitle]="'Premium Support'"
+    [ticketDetails]="
+      'Our team is available 24/7 to assist with any technical issues you might encounter. Get quick responses and personalized solutions for all your needs.'
+    "
+  ></app-card>
+
+  <app-card
+    [cardTitle]="'Exclusive Discounts'"
+    [ticketDetails]="
+      'Access special offers and promotions that are exclusively available to our members that we greatly appreaciate. Save on products, services, and more!'
+    "
+  ></app-card>
+
+  <app-card
+    [cardTitle]="'Personalized Services'"
+    [ticketDetails]="
+      'Enjoy tailor-made experiences with our personalized services. Let us help you create solutions that match your exact needs.'
+    "
+  ></app-card>
+  
+</div>
+}

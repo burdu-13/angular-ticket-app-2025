@@ -1,0 +1,75 @@
+<div class="item-card">
+    <div class="item-field">
+      <label>Event Name:</label>
+      <span>{{ event.name }}</span>
+    </div>
+    <div class="event-field">
+      <label>Date:</label>
+      <span>{{ event.date | date : "mediumDate" }}</span>
+    </div>
+    <div class="event-field">
+      <label>Category:</label>
+      <span>{{ event.category }}</span>
+    </div>
+    <button class="edit-event-button" (click)="toggleEditEventPage()">Edit Event</button>
+  </div>
+
+  @if (isEditEventVisible) {
+    <div class="edit-event-overlay" (click)="toggleEditEventPage()">
+      <div class="edit-event-card-page" (click)="$event.stopPropagation()">
+        <form [formGroup]="editEvent" (ngSubmit)="submitEditEvent()">
+          <h2>Edit Event</h2>
+          <div class="form-content">
+            <div class="input-field">
+              <input
+                type="text"
+                name="name"
+                formControlName="name"
+                placeholder="Event Name"
+              />
+            </div>
+            <div class="input-field">
+              <input type="date" formControlName="date" name="date" />
+            </div>
+            <div class="input-field">
+              <textarea
+                ame="description"
+                formControlName="description"
+                placeholder="Description"
+              ></textarea>
+            </div>
+            <div class="input-field">
+              <input
+                type="text"
+                name="imageurl"
+                formControlName="imgUrl"
+                placeholder="Image URL"
+              />
+            </div>
+          </div>
+          <div class="form-buttons">
+            <div class="remove-btn">
+              <button id="remove-btn" (click)="removeEvent()">
+                Remove Event
+              </button>
+            </div>
+            <div class="remove-btn">
+              <button id="suspend-btn" (click)="toggleSalesSuspension()" [disabled]="!canSuspendSales">Suspend Sales</button>
+            </div>
+            <div class="action-btns">
+              <button type="submit" id="submit-btn">Save Changes</button>
+              <button
+                type="button"
+                id="cancel-btn"
+                (click)="toggleEditEventPage()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+        <button class="close-edit-btn">&#x2716;</button>
+      </div>
+    </div>
+    }
+  
